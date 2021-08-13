@@ -22,3 +22,11 @@ class AgentInfo(db.Model):
     Description = db.Column(db.String, nullable=False)
     Website = db.Column(db.String, nullable=False)
     Region = db.Column(db.String, nullable=False)
+
+class Book(db.Model):
+    __tablename__ = "book"
+    BookId = db.Column(db.Integer, primary_key=True)
+    UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
+    TourId = db.Column(db.Integer, db.ForeignKey("Tours.ToursId"), nullable=False)
+
+
