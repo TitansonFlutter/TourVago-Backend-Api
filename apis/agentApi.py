@@ -12,13 +12,14 @@ app = Flask(__name__)
 # Users Namespace
 namespace2 = Namespace("agents", description="Agents related operations")
 
+
 # Agents Schema
 
 
 # Agent Api
 @namespace2.route("/agentId:int/agentInfo")
 class AgentInfoResource(Resource):
-    def post(self):
+    def post(self, agentId):
         """
         Add Agent Info
         """
@@ -86,7 +87,7 @@ class AgentsHistoryResource(Resource):
 
     def get(self, agentId):
         """
-        Get All Tours
+        Get Tour History
         """
 
 
@@ -94,5 +95,5 @@ class AgentsHistoryResource(Resource):
 class AgentReviewsResource(Resource):
     def get(self, agentId):
         """
-        Get All Tours
+        Get Tour Reviews
         """

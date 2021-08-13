@@ -10,7 +10,7 @@ from marsh import *
 app = Flask(__name__)
 
 # Filter Namespace
-namespace5 = Namespace("filter", description="Filter related operations")
+namespace5 = Namespace("filters", description="Filter related operations")
 
 
 # Search Api

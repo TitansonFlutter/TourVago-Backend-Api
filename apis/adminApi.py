@@ -9,27 +9,27 @@ from marsh import *
 # Instance app
 app = Flask(__name__)
 
-# Users Namespace
+# Admins Namespace
 namespace6 = Namespace("admin", description="Admin related operations")
 
 
 # Admin Api
 @namespace6.route("/status/agents/agentId:int")
-class ReviewsResource(Resource):
-    def put(self):
+class AdminAgentResource(Resource):
+    def put(self, agentId):
         """
-        Update Agent Info
+        Update Agent Approval
         """
 
+    def get(self, agentId):
+        """
+        Get Agent Approval
+        """
+
+
+@namespace6.route("/status/agents")
+class AdminAgentsResource(Resource):
     def get(self):
         """
-        Add Agent Info
-        """
-
-
-@namespace6.route("/status")
-class ReviewsResource(Resource):
-    def get(self):
-        """
-        Add Agent Info
+        Get All Agents Status
         """

@@ -13,12 +13,12 @@ app = Flask(__name__)
 namespace3 = Namespace("users", description="Users related operations")
 
 
-# User Api
+# Users Api
 @namespace3.route("/userId:int/book")
-class ReviewsResource(Resource):
+class UserBookResource(Resource):
     def post(self, userId):
         """
-        Add Agent Info
+        Book A Tour
         """
 
 

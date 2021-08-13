@@ -10,15 +10,15 @@ from marsh import *
 app = Flask(__name__)
 
 # Users Namespace
-namespace4 = Namespace("feature", description="Features related operations")
+namespace4 = Namespace("features", description="Features related operations")
 
 
-# User Api
+# Features Api
 @namespace4.route("/review")
 class ReviewResource(Resource):
     def post(self):
         """
-        Give a Review to Tours
+        Give Review to Tours
         """
 
 
@@ -26,7 +26,7 @@ class ReviewResource(Resource):
 class TopDestinationResource(Resource):
     def get(self):
         """
-        Add Agent Info
+        Get Top Destinations
         """
 
 
@@ -34,7 +34,7 @@ class TopDestinationResource(Resource):
 class RecommendedResource(Resource):
     def get(self):
         """
-        Add Agent Info
+        Get Recomenede Tours
         """
 
 
@@ -42,5 +42,5 @@ class RecommendedResource(Resource):
 class ToursResource(Resource):
     def get(self):
         """
-        Add Agent Info
+        Get Tour Details
         """

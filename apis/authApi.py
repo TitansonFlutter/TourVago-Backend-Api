@@ -35,7 +35,6 @@ login = namespace1.model(
 )
 
 # Auth Api
-# Login User
 @namespace1.route("/login")
 class UserResource(Resource):
     @namespace1.expect(login)
