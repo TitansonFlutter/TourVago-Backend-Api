@@ -29,4 +29,14 @@ class Book(db.Model):
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
     TourId = db.Column(db.Integer, db.ForeignKey("Tours.ToursId"), nullable=False)
 
+class History(db.Model):
+    __tablename__ = "history"
+    HistoryId = db.Column(db.Integer, primary_key=True)
+    AgentName = db.Column(db.String, nullable=False)
+    PlaceName = db.Column(db.String, nullable=False)
+    Rate = db.Column(db.String, nullable=False)
+    Date = db.Column(db.String, nullable=False)
+    ShortDescription = db.Column(db.String, nullable=False)
+    UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
+
 
