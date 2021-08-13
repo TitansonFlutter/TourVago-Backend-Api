@@ -48,3 +48,21 @@ class Review(db.Model):
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
     BookId = db.Column(db.Integer, db.ForeignKey("Book.BookId"), nullable=False)
 
+class Tours(db.Model):
+    __tablename__ = "tours"
+    TourId = db.Column(db.Integer, primary_key=True)
+    TourName = db.Column(db.String, nullable=False)
+    Country = db.Column(db.String, nullable=False)
+    Region = db.Column(db.String, nullable=False)
+    City = db.Column(db.String, nullable=False)
+    WhatIsIncluded = db.Column(db.String, nullable=False)
+    WhatIsExcluded = db.Column(db.String, nullable=False)
+    TourDescription = db.Column(db.String, nullable=False)
+    WhatToBring = db.Column(db.String, nullable=False)
+    Itinerary = db.Column(db.String, nullable=False)
+    Duration = db.Column(db.String, nullable=False)
+    StartingDate = db.Column(db.String, nullable=False)
+    Special = db.Column(db.String, nullable=False)
+    Price = db.Column(db.String, nullable=False)
+    UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
+
