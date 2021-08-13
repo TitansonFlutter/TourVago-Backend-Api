@@ -27,7 +27,7 @@ class Book(db.Model):
     __tablename__ = "book"
     BookId = db.Column(db.Integer, primary_key=True)
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
-    TourId = db.Column(db.Integer, db.ForeignKey("Tours.ToursId"), nullable=False)
+    TourId = db.Column(db.Integer, db.ForeignKey("Tours.TourId"), nullable=False)
 
 class History(db.Model):
     __tablename__ = "history"
@@ -39,4 +39,12 @@ class History(db.Model):
     ShortDescription = db.Column(db.String, nullable=False)
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
 
+class Review(db.Model):
+    __tablename__ = "review"
+    ReviewId = db.Column(db.Integer, primary_key=True)
+    Comment = db.Column(db.String, nullable=False)
+    Rate = db.Column(db.String, nullable=False)
+    Date = db.Column(db.String, nullable=False)
+    UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
+    BookId = db.Column(db.Integer, db.ForeignKey("Book.BookId"), nullable=False)
 
