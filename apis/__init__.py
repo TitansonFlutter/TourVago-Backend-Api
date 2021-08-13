@@ -2,7 +2,7 @@ from flask import Flask, Blueprint
 from flask_restplus import Api
 from flask_marshmallow import Marshmallow
 
-from . import userApi
+from . import authApi, agentApi
 from settings import *
 from Model.models import *
 
@@ -33,5 +33,7 @@ api = Api(
 
 
 # Register the Blueprint
-api.add_namespace(userApi.namespace1)
+api.add_namespace(authApi.namespace1)
+
+api.add_namespace(agentApi.namespace2)
 app.register_blueprint(bp)

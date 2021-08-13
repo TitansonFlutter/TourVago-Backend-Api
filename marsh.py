@@ -6,6 +6,6 @@ mar = Marshmallow()
 
 class UsersSchema(mar.Schema):
     class Meta:
-        fields = ("FirstName", "LastName", "Email")
+        fields = ("UserId", "UserName", "Role", "Email")
 
         model = Users
