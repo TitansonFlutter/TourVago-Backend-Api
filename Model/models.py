@@ -17,27 +17,22 @@ class AgentInfo(db.Model):
     AgentInfoId = db.Column(db.Integer, primary_key=True)
     AgentId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
     Approved = db.Column(db.Boolean, nullable=False)
-    Acronyms = db.Column(db.String, nullable=False)
+    Acronym = db.Column(db.String, nullable=False)
     Motto = db.Column(db.String, nullable=False)
     Description = db.Column(db.String, nullable=False)
     Website = db.Column(db.String, nullable=False)
+    Country = db.Column(db.String, nullable=False)
     Region = db.Column(db.String, nullable=False)
+    City = db.Column(db.String, nullable=False)
+    Address = db.Column(db.String, nullable=False)
+    PhoneNumber = db.Column(db.String, nullable=False)
+    ZipCode = db.Column(db.String, nullable=False)
 
 class Book(db.Model):
     __tablename__ = "book"
     BookId = db.Column(db.Integer, primary_key=True)
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
     TourId = db.Column(db.Integer, db.ForeignKey("Tours.TourId"), nullable=False)
-
-class History(db.Model):
-    __tablename__ = "history"
-    HistoryId = db.Column(db.Integer, primary_key=True)
-    AgentName = db.Column(db.String, nullable=False)
-    PlaceName = db.Column(db.String, nullable=False)
-    Rate = db.Column(db.String, nullable=False)
-    Date = db.Column(db.String, nullable=False)
-    ShortDescription = db.Column(db.String, nullable=False)
-    UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
 
 class Review(db.Model):
     __tablename__ = "review"
@@ -52,6 +47,7 @@ class Tours(db.Model):
     __tablename__ = "tours"
     TourId = db.Column(db.Integer, primary_key=True)
     TourName = db.Column(db.String, nullable=False)
+    TourImage = db.Column(db.String, nullable=False)
     Country = db.Column(db.String, nullable=False)
     Region = db.Column(db.String, nullable=False)
     City = db.Column(db.String, nullable=False)
