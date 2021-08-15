@@ -60,5 +60,6 @@ class Tours(db.Model):
     StartingDate = db.Column(db.String, nullable=False)
     Special = db.Column(db.String, nullable=False)
     Price = db.Column(db.String, nullable=False)
+    Updated = db.Column(db.Boolean, nullable=False)
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
 
