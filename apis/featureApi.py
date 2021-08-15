@@ -50,7 +50,7 @@ tour = namespace4.model("Review",{
     "StartingDate":fields.String,
     "Special":fields.String,
     "Price":fields.String,
-    "Updated":fields.Boolean
+     "Updated":fields.Boolean
 
 })
 
