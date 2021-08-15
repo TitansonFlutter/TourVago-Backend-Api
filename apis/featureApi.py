@@ -36,6 +36,22 @@ tour = namespace4.model("Review",{
     "Date":fields.String,
     "UserId":fields.Integer,
     "BookId":fields.Integer,
+    "TourName":fields.String,
+    "TourImage":fields.String,
+    "Country":fields.String,
+    "Region":fields.String,
+    "City":fields.String,
+    "WhatIsIncluded":fields.String,
+    "WhatIsExcluded":fields.String,
+    "TourDescription":fields.String,
+    "WhatToBring":fields.String,
+    "Itinerary":fields.String,
+    "Duration":fields.String,
+    "StartingDate":fields.String,
+    "Special":fields.String,
+    "Price":fields.String,
+    "Updated":fields.Boolean
+
 })
 
 
