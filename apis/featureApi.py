@@ -1,8 +1,9 @@
 # Import modules
 from flask.globals import request
 from flask_restplus import Resource, Namespace, api
+from flask_restplus import *
 from flask import Flask
-from flask_marshmallow import Marshmallow
+from flask_marshmallow import *
 from marshmallow import *
 
 from Model.models import *
@@ -21,7 +22,7 @@ reviews_schema = ReviewSchema(many=True)
 tour_schema = TourSchema()
 tours_schema = TourSchema(many=True)
 
-review = api.model("Review",{
+review = namespace4.model("Review",{
     "Comment": fields.String,
     "Rate":fields.String,
     "Date":fields.String,
@@ -29,7 +30,7 @@ review = api.model("Review",{
     "BookId":fields.Integer,
 })
 
-tour = api.model("Review",{
+tour = namespace4.model("Review",{
     "Comment": fields.String,
     "Rate":fields.String,
     "Date":fields.String,

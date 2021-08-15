@@ -47,7 +47,7 @@ class Users:
     Updated = ""
 
 
-class TourSchema:
+class TourSchema (mar.Schema):
     class Meta:
         fields = (
             "UserId",
