@@ -57,7 +57,7 @@ tour = namespace4.model("Review",{
 
 
 # Features Api
-@namespace4.route("/review")
+@app.route("/review")
 class ReviewResource(Resource):
     @namespace4.expect(review)
     def post(self):
@@ -86,7 +86,7 @@ class ReviewResource(Resource):
 
 
 
-@namespace4.route("/topDestinations")
+@app.route("/topDestinations")
 class TopDestinationResource(Resource):
     def get(self):
         """
@@ -94,7 +94,7 @@ class TopDestinationResource(Resource):
         """
 
 
-@namespace4.route("/recommended")
+@app.route("/recommended")
 class RecommendedResource(Resource):
     def get(self):
         """
@@ -103,7 +103,7 @@ class RecommendedResource(Resource):
 
 
 
-@namespace4.route("/tours/tourId:int")
+@app.route("/tours/tourId:int")
 class ToursResource(Resource):
     def get(self, tid):
         """
