@@ -1,10 +1,6 @@
-# Import modules
-from flask.globals import request
-from flask_restplus import Resource, Namespace, api
-from flask_restplus import *
-from flask import Flask
-from flask_marshmallow import *
-from marshmallow import *
+from flask_restplus import Resource, fields, Namespace
+from flask import request, Flask
+from flask_bcrypt import Bcrypt
 
 from Model.models import *
 from marsh import *
@@ -30,7 +26,7 @@ review = namespace4.model("Review",{
     "BookId":fields.Integer,
 })
 
-tour = namespace4.model("Review",{
+tour = namespace4.model("Tours",{
     "Comment": fields.String,
     "Rate":fields.String,
     "Date":fields.String,
@@ -57,7 +53,7 @@ tour = namespace4.model("Review",{
 
 
 # Features Api
-@app.route("/review")
+@namespace4.route("/review")
 class ReviewResource(Resource):
     @namespace4.expect(review)
     def post(self):
@@ -86,7 +82,7 @@ class ReviewResource(Resource):
 
 
 
-@app.route("/topDestinations")
+@namespace4.route("/topDestinations")
 class TopDestinationResource(Resource):
     def get(self):
         """
@@ -94,7 +90,7 @@ class TopDestinationResource(Resource):
         """
 
 
-@app.route("/recommended")
+@namespace4.route("/recommended")
 class RecommendedResource(Resource):
     def get(self):
         """
@@ -103,7 +99,7 @@ class RecommendedResource(Resource):
 
 
 
-@app.route("/tours/tourId:int")
+@namespace4.route("/tours/tourId:int")
 class ToursResource(Resource):
     def get(self, tid):
         """
