@@ -33,6 +33,19 @@ class AgentSchema(Schema):
     def create_Agent(self, data,**kwargs):
         return data
 
+# Admin Agent Crud model
+addAgent= namespace6.model(
+    "Agent",
+    {
+
+    "name":fields.String(),
+    "username":fields.String(),
+    "password":fields.String()
+
+
+    }
+)
+
 
 
 # Admin Api
