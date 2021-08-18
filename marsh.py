@@ -23,3 +23,64 @@ class AgentInfosSchema(mar.Schema):
         fields = ("AgentInfoId", "AgentId", "Approved", "Acronym", "Motto", "Description", "Website", "Country", "Region", "City", "Address", "PhoneNumber", "ZipCode")
 
         model = AgentInfo
+
+
+
+class Reviews:
+    UserId = 0
+    BookId = 0
+    Comment = ""
+    Rate = ""
+    Date = ""
+
+
+class ReviewSchema(mar.Schema):
+    class Meta:
+        fields = ("Comment", "Rate", "Date", "UserId", "BookId")
+        model = Reviews
+
+
+class Users:
+    UserId = 0
+    BookId = 0
+    Comment = ""
+    TourName = ""
+    TourImage = ""
+    Country = ""
+    Region = ""
+    City = ""
+    WhatIsIncluded = ""
+    WhatIsExcluded = ""
+    TourDescription = ""
+    WhatToBring = ""
+    Itinerary = ""
+    Duration = ""
+    StartingDate = ""
+    Special = ""
+    Price = ""
+    Updated = ""
+
+
+class TourSchema (mar.Schema):
+    class Meta:
+        fields = (
+            "UserId",
+            "BookId",
+            "Comment",
+            "TourName",
+            "TourImage",
+            "Country",
+            "Region",
+            "City",
+            "WhatIsIncluded",
+            "WhatIsExcluded",
+            "TourDescription",
+            "WhatToBring",
+            "Itinerary",
+            "Duration",
+            "StartingDate",
+            "Special",
+            "Price",
+            "Updated"
+        )
+        model = Users
