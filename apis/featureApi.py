@@ -105,7 +105,7 @@ class ToursResource(Resource):
         """
         Get Tour Details
         """
-        
+        #get tour detail 
         tour = Tours.query.filter_by(book_id=tid).first()
         if tour:
             return tour_schema.dump(tour),200
