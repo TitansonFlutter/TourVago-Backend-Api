@@ -28,3 +28,4 @@ six==1.16.0
 SQLAlchemy==1.4.22
 tomli==1.2.1
 Werkzeug==0.16.1
+WhooshAlchemy==0.3.1

@@ -26,6 +26,8 @@ class AgentInfosSchema(mar.Schema):
 
 
 
+
+
 class Reviews:
     UserId = 0
     BookId = 0

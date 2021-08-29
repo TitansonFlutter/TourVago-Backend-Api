@@ -1,6 +1,7 @@
+from flask import app
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+import flask_whooshalchemy as wa
+db = SQLAlchemy(app)
 
 
 class Users(db.Model):
@@ -41,9 +42,10 @@ class Review(db.Model):
     Rate = db.Column(db.String, nullable=False)
     Date = db.Column(db.String, nullable=False)
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
-    BookId = db.Column(db.Integer, db.ForeignKey("Book.BookId"), nullable=False)
+    TourId = db.Column(db.Integer, db.ForeignKey("Tours.TourId"), nullable=False)
 
 class Tours(db.Model):
+    _searchable__ = ["TourName","Country", "Region", "City", "WhatIsIncluded", "WhatIsExcluded", "TourDescription", "WhatToBring", "Itinerary", "Duration", "StartingDate", "Price", "Updated"]
     __tablename__ = "tours"
     TourId = db.Column(db.Integer, primary_key=True)
     TourName = db.Column(db.String, nullable=False)
@@ -58,8 +60,9 @@ class Tours(db.Model):
     Itinerary = db.Column(db.String, nullable=False)
     Duration = db.Column(db.String, nullable=False)
     StartingDate = db.Column(db.String, nullable=False)
-    Special = db.Column(db.String, nullable=False)
     Price = db.Column(db.String, nullable=False)
     Updated = db.Column(db.Boolean, nullable=False)
     UserId = db.Column(db.Integer, db.ForeignKey("Users.UserId"), nullable=False)
 
+
+wa.whoosh_index(app,Tours)
