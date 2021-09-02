@@ -2,8 +2,8 @@
 from flask_restplus import Resource, Namespace, fields
 from flask import request, Flask
 
+
 from Model.models import *
-from authApi import *
 from marsh import *
 
 
@@ -24,12 +24,42 @@ tours_schema = ToursSchema(many=True)
 
 # AgentInfo Data Model
 agentInfo = namespace2.model(
-    "AgentInfo", {"Approved": fields.String, "Acronym": fields.String, "Motto": fields.String, "Description": fields.String, "Website": fields.String, "Country": fields.String, "Region": fields.String, "City": fields.String, "Address": fields.String, "PhoneNumber": fields.String, "ZipCode": fields.String}
+    "AgentInfo",
+    {
+        "Approved": fields.String,
+        "Acronym": fields.String,
+        "Motto": fields.String,
+        "Description": fields.String,
+        "Website": fields.String,
+        "Country": fields.String,
+        "Region": fields.String,
+        "City": fields.String,
+        "Address": fields.String,
+        "PhoneNumber": fields.String,
+        "ZipCode": fields.String,
+    },
 )
 
 # Tour Data Model
 tour = namespace2.model(
-    "Tour", {"TourName": fields.String, "TourImage": fields.String, "Country": fields.String, "Region": fields.String, "City": fields.String, "WhatIsIncluded": fields.String, "WhatIsExcluded": fields.String, "TourDescription": fields.String, "WhatToBring": fields.String, "Itinerary": fields.String, "Duration": fields.String, "StartingDate": fields.String, "Special": fields.String, "Price": fields.String, "Updated": fields.String}
+    "Tour",
+    {
+        "TourName": fields.String,
+        "TourImage": fields.String,
+        "Country": fields.String,
+        "Region": fields.String,
+        "City": fields.String,
+        "WhatIsIncluded": fields.String,
+        "WhatIsExcluded": fields.String,
+        "TourDescription": fields.String,
+        "WhatToBring": fields.String,
+        "Itinerary": fields.String,
+        "Duration": fields.String,
+        "StartingDate": fields.String,
+        "Special": fields.String,
+        "Price": fields.String,
+        "Updated": fields.String,
+    },
 )
 
 
@@ -43,25 +73,24 @@ class AgentInfoResource(Resource):
         """
         # Get data from api and create new instance of tour
         new_agentInfo = Tours(
-            AgentId = agentId,
-            Approved = request.json["Approved"],
-            Acronym = request.json["Acronym"],
-            Motto = request.json["Motto"],
-            Description = request.json["Description"],
-            Website = request.json["Website"],
-            Country = request.json["Country"],
-            Region = request.json["Region"],
-            City = request.json["City"],
-            Address = request.json["Address"],
-            PhoneNumber = request.json["PhoneNumber"],
-            ZipCode = request.json["ZipCode"],
+            AgentId=agentId,
+            Approved=request.json["Approved"],
+            Acronym=request.json["Acronym"],
+            Motto=request.json["Motto"],
+            Description=request.json["Description"],
+            Website=request.json["Website"],
+            Country=request.json["Country"],
+            Region=request.json["Region"],
+            City=request.json["City"],
+            Address=request.json["Address"],
+            PhoneNumber=request.json["PhoneNumber"],
+            ZipCode=request.json["ZipCode"],
         )
         # Add to database
         db.session.add(new_agentInfo)
         db.session.commit()
         # return tour data
         return tour_schema.dump(new_agentInfo), 200
-
 
 
 @namespace2.route("")
@@ -72,6 +101,7 @@ class AgentsResource(Resource):
         """
         agent = Users.query.filter_by(Role="Agent").all()
         return users_schema.dump(agent), 200
+
 
 @namespace2.route("/agentId:int/tour/tourId:int/")
 class AgentTourResource(Resource):
@@ -91,7 +121,7 @@ class AgentTourResource(Resource):
         """
         # Get tour data from database
         tour = Tours.query.filter_by(UserId=agentId, TourId=tourId).first()
-        
+
         tour.TourName = request.json["TourName"]
         tour.TourImage = request.json["TourImage"]
         tour.Country = request.json["Country"]
@@ -120,11 +150,10 @@ class AgentTourResource(Resource):
         """
         # Get tour data from database
         tour = Tours.query.filter_by(UserId=agentId, TourId=tourId).first()
-        #Delete from database
+        # Delete from database
         db.session.delete(tour)
         db.session.commit()
         return tour_schema.dump(tour), 200
-
 
 
 # SignUP a User
@@ -137,22 +166,22 @@ class AgentToursResource(Resource):
         """
         # Get data from api and create new instance of tour
         new_tour = Tours(
-            TourName = request.json["TourName"],
-            TourImage = request.json["TourImage"],
-            Country = request.json["Country"],
-            Region = request.json["Region"],
-            City = request.json["City"],
-            WhatIsIncluded = request.json["WhatIsIncluded"],
-            WhatIsExcluded = request.json["WhatIsExcluded"],
-            TourDescription = request.json["TourDescription"],
-            WhatToBring = request.json["WhatToBring"],
-            Itinerary = request.json["Itinerary"],
-            Duration = request.json["Duration"],
-            StartingDate = request.json["StartingDate"],
-            Special = request.json["Special"],
-            Price = request.json["Price"],
-            Updated = request.json["Updated"],
-            UserId = agentId,
+            TourName=request.json["TourName"],
+            TourImage=request.json["TourImage"],
+            Country=request.json["Country"],
+            Region=request.json["Region"],
+            City=request.json["City"],
+            WhatIsIncluded=request.json["WhatIsIncluded"],
+            WhatIsExcluded=request.json["WhatIsExcluded"],
+            TourDescription=request.json["TourDescription"],
+            WhatToBring=request.json["WhatToBring"],
+            Itinerary=request.json["Itinerary"],
+            Duration=request.json["Duration"],
+            StartingDate=request.json["StartingDate"],
+            Special=request.json["Special"],
+            Price=request.json["Price"],
+            Updated=request.json["Updated"],
+            UserId=agentId,
         )
         # Add to database
         db.session.add(new_tour)
@@ -168,6 +197,7 @@ class AgentToursResource(Resource):
         tours = Tours.query.filter_by(UserId=agentId).all()
         # Return all tour data
         return tours_schema.dump(tours)
+
 
 @namespace2.route("/agentId:int/history/historyId:int/")
 class AgentHistoryResource(Resource):

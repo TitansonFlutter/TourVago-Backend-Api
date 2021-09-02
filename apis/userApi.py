@@ -22,7 +22,7 @@ book = namespace3.model(
 
 
 # Users Api
-@namespace3.route("/userId:int/book")
+@namespace3.route("/<int:userId>/book")
 class UserBookResource(Resource):
     @namespace3.expect(book)
     def post(self, userId):
@@ -50,7 +50,7 @@ class UserBookResource(Resource):
         db.session.commit()
 
 
-@namespace3.route("/userId:int/history/upcoming")
+@namespace3.route("/<int:userId>/history/upcoming")
 class UserUpcomingHistoriesResource(Resource):
     def get(self, userId):
         """
@@ -77,7 +77,7 @@ class UserUpcomingHistoriesResource(Resource):
         return upcoming
 
 
-@namespace3.route("/userId:int/history/past")
+@namespace3.route("/<int:userId>/history/past")
 class UserPastHistoriesResource(Resource):
     def get(self, userId):
         """

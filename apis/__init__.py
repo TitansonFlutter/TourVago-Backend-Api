@@ -5,6 +5,7 @@ from flask_marshmallow import Marshmallow
 from . import authApi, agentApi, userApi, searchApi, adminApi, featureApi
 from settings import *
 from Model.models import *
+from flask_sqlalchemy import SQLAlchemy
 
 
 # Flask Instance
@@ -17,6 +18,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = SQLALCHEMY_TRACK_MODIFICATIONS
 
 # Instantiate database
 db.init_app(app)
+
 ma = Marshmallow(app)
 
 

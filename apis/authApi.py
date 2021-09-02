@@ -24,7 +24,8 @@ user = namespace1.model(
     "User",
     {
         "UserName": fields.String("FirstName"),
-        "Email": fields.String,
+        "Email": fields.String("Email"),
+        "Role": fields.Integer(0),
         "Password": fields.String("Secured Password"),
     },
 )
@@ -84,12 +85,12 @@ class usersResource(Resource):
         hashed = bcrypt.generate_password_hash(password).decode("utf-8")
 
         # Create Instance
-        new_user = Users(
-            UserName=request.json["UserName"],
-            Role=request.json["Role"],
-            Email=request.json["Email"],
-            Password=hashed,
-        )
+        new_user = Users()
+        new_user.UserName = (request.json["UserName"],)
+        new_user.Role = (request.json["Role"],)
+        new_user.Email = (request.json["Email"],)
+        new_user.Password = (hashed,)
+
         # Add to database
         db.session.add(new_user)
         db.session.commit()
