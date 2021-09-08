@@ -90,3 +90,16 @@ class AdminAgentResource(Resource):
         print(result)
 
         return {"Result":result}
+
+@namespace6.route("/status/agents")
+class AdminAgentsResource(Resource):
+
+    # @namespace6.marshal_with(addAgent,envelope='Data')
+    
+    def get(self):
+        """
+        Get All Agents Status
+        """  
+        schema = AgentSchema(many=True)
+        return schema.dump(data)
+        
