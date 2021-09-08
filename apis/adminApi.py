@@ -163,4 +163,5 @@ class AdminAgentResource(Resource):
 
         db.session.delete(agent)
         db.session.commit()
+
         return {"message": "Successfully Deleted"}, 200
