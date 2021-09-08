@@ -93,14 +93,14 @@ class AgentInfoResource(Resource):
         return tour_schema.dump(new_agentInfo), 200
 
 
-@namespace2.route("")
-class AgentsResource(Resource):
-    def get(self):
-        """
-        Get all Agent
-        """
-        agent = Users.query.filter_by(Role="Agent").all()
-        return users_schema.dump(agent), 200
+# @namespace2.route("")
+# class AgentsResource(Resource):
+#     def get(self):
+#         """
+#         Get all Agent
+#         """
+#         agent = Users.query.filter_by(Role="Agent").all()
+#         return users_schema.dump(agent), 200
 
 
 @namespace2.route("/agentId:int/tour/tourId:int/")
