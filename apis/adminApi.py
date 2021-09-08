@@ -42,14 +42,20 @@ class AgentSchema(Schema):
 
 
 
-#sample  data
-data =[]
-agent =Agent(
-    name="Lucy",
-    username="L",
-    password="67587t6"
+# Admin Agent Crud model
+addAgent= namespace6.model(
+    "Agent",
+    {
 
-    )
+    "name":fields.String(),
+    "username":fields.String(),
+    "password":fields.String()
+
+
+    }
+)
+
+
 data.append(agent)
 # Admin Api
 @namespace6.route("/status/agents/agentId:int")
