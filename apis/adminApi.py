@@ -67,17 +67,26 @@ agent =Agent(
 data.append(agent)
 # Admin Api
 @namespace6.route("/status/agents/agentId:int")
+class AdminAgentResource(Resource):
 
+    @namespace6.expect(addAgent)
+    def put(self):
 
-@namespace6.route("/status/agents")
-class AdminAgentsResource(Resource):
-
-    # @namespace6.marshal_with(addAgent,envelope='Data')
-    
-    def get(self):
         """
-        Get All Agents Status
-        """  
-        schema = AgentSchema(many=True)
-        return schema.dump(data)
-        
+        Update Agent Approval
+        """ 
+        schema= AgentSchema()
+        newAgent =schema.load(api.payload)
+        data.append(newAgent)
+        print(newAgent)
+
+        return {"Result":"New Agent added successfully ..."},201
+
+    def get(self, agentId):
+        """
+        Get Agent Approval
+        """ 
+        result={"Name":"Abebe"}
+        print(result)
+
+        return {"Result":result}
