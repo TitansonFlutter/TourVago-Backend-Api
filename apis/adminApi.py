@@ -10,7 +10,7 @@ from .authApi import user_schema, users_schema, bcrypt
 
 
 # Instance app
-app = Flask(name)
+app = Flask(__name__)
 api = Api(app)
 # Admins Namespace
 namespace6 = Namespace("admin", description="Admin related operations")
@@ -150,7 +150,7 @@ class AdminAgentResource(Resource):
         """
         agent = Users.query.filter_by(Role=1, UserId=agentId).first()
         if not agent:
-            return {"message": "Agent does not exist!!"}, 404
+            return {"message": "No Agent Found !"}, 404
         return users_schema.dump(agent)
 
     def delete(self, agentId):
@@ -159,7 +159,7 @@ class AdminAgentResource(Resource):
         """
         agent = Users.query.filter_by(Role=1, UserId=agentId).first()
         if not agent:
-            return {"message": "Agent does not exist!!"}, 404
+            return {"message": "No Agent Found !"}, 404
 
         db.session.delete(agent)
         db.session.commit()
