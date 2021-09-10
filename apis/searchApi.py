@@ -31,11 +31,6 @@ class FiltersResource(Resource):
         Filter Tours
         """
 
-        # tours = Tours.query.filter_by(TourName="Harer").all()
-        # if not tours:
-        #     return {"message": "No Tours Available"}, 404
-
-        # return tours_schema.dump(tours)
         print(request.json["tourName"])
         print(request.json["priceLow"])
         print(request.json["priceHigh"])
@@ -119,5 +114,27 @@ class FiltersResource(Resource):
             return ans, 200
 
         return {"message": "No Result"}, 404
+@namespace5.route("/<string:name>")
+class FilterResource(Resource):
+    def get(self, name):
+        name = name
 
+        res = Tours.query.filter(
+            or_(
+                Tours.TourName.like(f"%{name}%"),
+                Tours.TourDescription.like(f"%{name}%"),
+                Tours.WhatIsExcluded.like(f"%{name}%"),
+                Tours.Country.like(f"%{name}%"),
+                Tours.City.like(f"%{name}%"),
+                Tours.Itinerary.like(f"%{name}%"),
+                Tours.WhatIsIncluded.like(f"%{name}%"),
+                Tours.WhatToBring.like(f"%{name}%"),
+                Tours.Region.like(f"%{name}%"),
+            )
+        ).all()
+
+        if not res:
+            return {"message": "No Tours Available"}, 404
+
+        return tours_schema.dump(res)
 
