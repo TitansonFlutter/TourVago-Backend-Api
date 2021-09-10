@@ -2,7 +2,6 @@
 from flask_restplus import Resource, Namespace, fields, Api
 from flask import Flask, request
 
-
 from Model.models import *
 from marsh import *
 from .authApi import user_schema, users_schema, bcrypt
@@ -14,6 +13,8 @@ api = Api(app)
 # Admins Namespace
 namespace6 = Namespace("admin", description="Admin related operations")
 
+
+# Admin Agent Crud model
 addAgent = namespace6.model(
     "Agent",
     {
@@ -23,6 +24,47 @@ addAgent = namespace6.model(
         "Password": fields.String("Secured Password"),
     },
 )
+
+
+
+# Admin Api
+@namespace6.route("/status/agents/agentId:int")
+class AdminAgentStatusResource(Resource):
+    @namespace6.expect(addAgent)
+    def put(self):
+
+        """
+        Update Agent Approval
+        """
+        # schema= AgentSchema()
+        # newAgent =schema.load(api.payload)
+        # data.append(newAgent)
+        # print(newAgent)
+
+        # return {"Result":"New Agent added successfully ..."},201
+
+    def get(self, agentId):
+        """
+        Get Agent Approval
+        """
+        result = {"Name": "Abebe"}
+        print(result)
+
+        return {"Result": result}
+
+
+@namespace6.route("/status/agents")
+class AdminAgentsStatusResource(Resource):
+
+    # @namespace6.marshal_with(addAgent,envelope='Data')
+
+    def get(self):
+        """
+        Get All Agents Status
+        """
+        # schema = AgentSchema(many=True)
+        # return schema.dump(data)
+
 
 @namespace6.route("/agents")
 class AdminAgentsResource(Resource):
@@ -75,7 +117,7 @@ class AdminAgentResource(Resource):
         """
         agent = Users.query.filter_by(Role=1, UserId=agentId).first()
         if not agent:
-            return {"message": "No Agent Found !"}, 404
+            return {"message": "Agent does not exist!!"}, 404
         return users_schema.dump(agent)
 
     def delete(self, agentId):
@@ -84,7 +126,7 @@ class AdminAgentResource(Resource):
         """
         agent = Users.query.filter_by(Role=1, UserId=agentId).first()
         if not agent:
-            return {"message": "No Agent Found !"}, 404
+            return {"message": "Agent does not exist!!"}, 404
 
         db.session.delete(agent)
         db.session.commit()
